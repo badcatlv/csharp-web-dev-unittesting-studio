@@ -28,16 +28,20 @@ namespace BalancedBrackets
             int brackets = 0;
             foreach (char ch in str.ToCharArray())
             {
-                if (ch == '[')
+                if (brackets >= 0) //if the number of brackets is 0 or more keep iterating thru the array
                 {
-                    brackets++;
-                }
-                else if (ch == ']')
-                {
-                    brackets--;
-                }
+                    if (ch == '[') //if the first bracket we are looking for, an opening bracket, exists then we add 1 to our brackets variable.
+                    {
+                        brackets++;
+                    }
+                    else if (ch == ']') //we are still iterating, so if the next bracket we encounter is a closing bracket then we minus 1 from our brackets variable
+                    {
+                        brackets--;
+                    }
+                }//we iterate thru as long as our brackets variable is == or more to 0, if it is -1 or less then we know that the brackets are unbalanced because for the number to be negative would imply there wasnt an opening bracket to add to our variable before a closing bracket minus from our variable
+                
             }
-            return brackets == 0;
+            return brackets == 0; //we return true only if brackets is EQUAL to 0 after the iteration. 
         }
     }
 }
